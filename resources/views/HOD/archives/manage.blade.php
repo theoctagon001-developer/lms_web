@@ -10,7 +10,7 @@
     <script>
         const MAX_STORAGE = 50 * 1024; // 50 GB in MB
         let folderSizeMB = 0; // Storage in MB
-        let API_BASE_URL = "http://127.0.0.1:8000/";
+        let API_BASE_URL = "https://lms-backend-dqdn.onrender.com/";
 
         async function getApiBaseUrl() {
             try {

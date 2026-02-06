@@ -83,7 +83,7 @@
     const alertBox = document.getElementById('alertBox');
     const alertMessage = document.getElementById('alertMessage');
     const formMessage = document.getElementById('formMessage');
-    fetch('http://192.168.90.151:8000/api/Dropdown/AllStudentData')
+    fetch('https://lms-backend-dqdn.onrender.com/api/Dropdown/AllStudentData')
         .then(res => res.json())
         .then(data => {
             data.forEach(student => {
@@ -137,7 +137,7 @@
 
         loader.classList.remove('hidden');
 
-        fetch('http://192.168.90.151:8000/api/parents/add', {
+        fetch('https://lms-backend-dqdn.onrender.com/api/parents/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

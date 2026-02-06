@@ -259,7 +259,7 @@
 
 <script>
 // API Configuration
-let API_BASE_URL = "http://192.168.0.107:8000/";
+let API_BASE_URL = "https://lms-backend-dqdn.onrender.com/";
 const ADD_JUNIOR_API_URL = `${API_BASE_URL}api/Hod/add-junior`;
 
 // DOM Elements

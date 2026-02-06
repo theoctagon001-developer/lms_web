@@ -483,9 +483,9 @@ $directorId = session('Id', '');
             try {
                 let response = await fetch('/get-api-url');
                 let data = await response.json();
-                return data.api_base_url || "http://127.0.0.1:8000/";
+                return data.api_base_url || "https://lms-backend-dqdn.onrender.com/";
             } catch (error) {
-                return "http://127.0.0.1:8000/";
+                return "https://lms-backend-dqdn.onrender.com/";
             }
         }
     </script>

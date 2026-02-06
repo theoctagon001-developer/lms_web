@@ -364,7 +364,7 @@
     </div>
 
     <script>
-        let API_BASE_URL = "http://192.168.0.107:8000/";
+        let API_BASE_URL = "https://lms-backend-dqdn.onrender.com/";
         let allResults = [];
         let filteredStudents = [];
         let currentCourse = null;

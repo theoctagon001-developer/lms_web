@@ -9,7 +9,7 @@ class ApiConfig
     public static function init()
     {
         if (!self::$apiBaseUrl) { 
-            self::$apiBaseUrl = Cache::get('api_base_url', 'http://127.0.0.1:8000/'); 
+            self::$apiBaseUrl = Cache::get('api_base_url', 'https://lms-backend-dqdn.onrender.com/'); 
         }
     }
     public static function setApiBaseUrl($url)

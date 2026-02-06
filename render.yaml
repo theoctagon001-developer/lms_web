@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: lms-website
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: error
+    startCommand: php artisan migrate --force; apache2-foreground
+    healthCheckPath: /

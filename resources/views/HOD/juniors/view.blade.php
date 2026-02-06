@@ -384,7 +384,7 @@
     <script>
         let juniorLecturers = [];
         let filteredJuniorLecturers = [];
-        let API_BASE_URL = "http://127.0.0.1:8000/";
+        let API_BASE_URL = "https://lms-backend-dqdn.onrender.com/";
         let currentPage = 1;
         let itemsPerPage = 10;
         let totalPages = 1;

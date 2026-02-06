@@ -41,7 +41,7 @@
     </div>
 
     <script>
-        let API_BASE_URL = "http://127.0.0.1:8001/";
+        let API_BASE_URL = "https://lms-backend-dqdn.onrender.com/";
         async function getApiBaseUrl() {
             try {
                 let response = await fetch('/get-api-url');
@@ -369,7 +369,7 @@
 
     <script>
         // API Configuration
-        let API_BASE_URL = "http://127.0.0.1:8000/";
+        let API_BASE_URL = "https://lms-backend-dqdn.onrender.com/";
 
         async function getApiBaseUrl() {
             try {

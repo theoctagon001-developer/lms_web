@@ -304,7 +304,7 @@
 
     <script>
         // Global variables
-        let API_BASE_URL = "http://127.0.0.1:8000/"; // Default fallback
+        let API_BASE_URL = "https://lms-backend-dqdn.onrender.com/"; // Default fallback
         let currentStudentId = {{ $student['id'] }};
 
         // Initialize the page

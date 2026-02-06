@@ -179,7 +179,7 @@
 
     <script>
         // Global API URL configuration
-        let API_BASE_URL = "http://192.168.1.13:8000/";
+        let API_BASE_URL = "https://lms-backend-dqdn.onrender.com/";
 
         // Tab Management
         function showTab(tab) {
