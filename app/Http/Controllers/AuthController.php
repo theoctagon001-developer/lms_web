@@ -26,6 +26,12 @@ class AuthController extends Controller
         ]);
         $data = $response->json();
         if ($response->successful() && isset($data['Type'])) {
+            // Store OTP in session if provided (SMTP inactive)
+            $otpData = [
+                'two_step_otp' => $data['two_step_otp'] ?? null,
+                'smtp_inactive' => $data['smtp_inactive'] ?? false,
+            ];
+            
             if ($data['Type'] == 'Admin') {
                 session([
                     'userType' => 'Admin',
@@ -43,6 +49,8 @@ class AuthController extends Controller
                     'student_count' => $data['AdminInfo']['student_count'],
                     'faculty_count' => $data['AdminInfo']['faculty_count'],
                     'offer_count' => $data['AdminInfo']['offered_course_count'],
+                    'two_step_otp' => $otpData['two_step_otp'],
+                    'smtp_inactive' => $otpData['smtp_inactive'],
                 ]);
                 return redirect()->route('otp.form');
             } else if ($data['Type'] == 'Datacell') {
@@ -62,7 +70,8 @@ class AuthController extends Controller
                     'student_count' => $data['DatacellInfo']['student_count'],
                     'faculty_count' => $data['DatacellInfo']['faculty_count'],
                     'offer_count' => $data['DatacellInfo']['offered_course_count'],
-
+                    'two_step_otp' => $otpData['two_step_otp'],
+                    'smtp_inactive' => $otpData['smtp_inactive'],
                 ]);
                 return redirect()->route('otp.form');
             } else if ($data['Type'] == 'HOD') {
@@ -83,8 +92,9 @@ class AuthController extends Controller
                     'faculty_count' => $data['HODInfo']['faculty_count'],
                     'offer_count' => $data['HODInfo']['offered_course_count'],
                     'current_week' => $data['HODInfo']['Current_Week'],
-                    'program_id'=>$data['HODInfo']['program_id']
-
+                    'program_id'=>$data['HODInfo']['program_id'],
+                    'two_step_otp' => $otpData['two_step_otp'],
+                    'smtp_inactive' => $otpData['smtp_inactive'],
                 ]);
                 return redirect()->route('otp.form');
             } else if ($data['Type'] == 'Director') {
@@ -103,7 +113,9 @@ class AuthController extends Controller
                     'student_count' => $data['DirectorInfo']['student_count'],
                     'faculty_count' => $data['DirectorInfo']['faculty_count'],
                     'offer_count' => $data['DirectorInfo']['offered_course_count'],
-                    'sameer'=>'sameer'
+                    'sameer'=>'sameer',
+                    'two_step_otp' => $otpData['two_step_otp'],
+                    'smtp_inactive' => $otpData['smtp_inactive'],
                 ]);
                 
                 return redirect()->route('otp.form');

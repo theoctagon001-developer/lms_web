@@ -222,6 +222,22 @@
             Verifying OTP for: <span class="font-semibold text-primary">{{ session('username') }}</span>
         </div>
 
+        @if(session('smtp_inactive') && session('two_step_otp'))
+        <!-- SMTP Inactive Warning and OTP Display -->
+        <div style="background-color: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; animate-fade-in delay-100">
+            <p style="color: #92400e; font-size: 0.875rem; margin-bottom: 0.5rem; font-weight: 600;">
+                ⚠️ SMTP Server Not Active
+            </p>
+            <p style="color: #78350f; font-size: 0.8125rem; margin: 0;">
+                The SMTP server is not active. Please use the static OTP shown below for this sample project.
+            </p>
+        </div>
+        <div style="background-color: #eff6ff; border: 2px solid #3b82f6; border-radius: 8px; padding: 1.5rem; text-align: center; margin-bottom: 1rem; animate-fade-in delay-100">
+            <p style="color: #1e40af; font-size: 0.875rem; margin-bottom: 0.5rem; font-weight: 500;">Your Verification Code:</p>
+            <p style="color: #1e3a8a; font-size: 2rem; font-weight: bold; letter-spacing: 0.5rem; margin: 0;">{{ session('two_step_otp') }}</p>
+        </div>
+        @endif
+
         <div class="otp-timer animate-fade-in delay-100">
             <span class="timer-text">OTP expires in:</span>
             <span id="otpCountdown" class="timer-count">05:00</span>

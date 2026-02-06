@@ -242,6 +242,22 @@
             </a>
         </div>
 
+        <!-- OTP Display Section (shown after OTP is generated) -->
+        <div id="otp-display-section" class="step-content" style="display: none;">
+            <div style="background-color: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                <p style="color: #92400e; font-size: 0.875rem; margin-bottom: 0.5rem; font-weight: 600;">
+                    ⚠️ SMTP Server Not Active
+                </p>
+                <p style="color: #78350f; font-size: 0.8125rem; margin: 0;">
+                    The SMTP server is not active. Please use the static OTP shown below for this sample project.
+                </p>
+            </div>
+            <div style="background-color: #eff6ff; border: 2px solid #3b82f6; border-radius: 8px; padding: 1.5rem; text-align: center; margin-bottom: 1rem;">
+                <p style="color: #1e40af; font-size: 0.875rem; margin-bottom: 0.5rem; font-weight: 500;">Your Verification Code:</p>
+                <p id="displayed-otp" style="color: #1e3a8a; font-size: 2rem; font-weight: bold; letter-spacing: 0.5rem; margin: 0;">------</p>
+            </div>
+        </div>
+
       
         <div id="step2-content" class="step-content animate-fade-in delay-200">
             <p class="mb-4 text-sm text-gray-600 text-center">Enter the verification code sent to your email.</p>
@@ -374,8 +390,13 @@
                 .then(data => {
                     if (data.status === "success") {
                         hideLoader();
-                        alert(data.message);
                         localStorage.setItem("user_id", data.user_id);
+                        // Display OTP if provided (SMTP inactive)
+                        if (data.otp) {
+                            document.getElementById("displayed-otp").textContent = data.otp;
+                            document.getElementById("otp-display-section").style.display = "block";
+                        }
+                        alert(data.message);
                         nextStep(1);
                     } else {
                         hideLoader();
