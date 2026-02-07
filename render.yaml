@@ -13,5 +13,7 @@ services:
         value: stderr
       - key: LOG_LEVEL
         value: error
+      - key: FORCE_HTTPS
+        value: true
     startCommand: php artisan migrate --force; apache2-foreground
     healthCheckPath: /

@@ -4,7 +4,51 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http;
+use App\Services\ApiConfig;
 
+// Backend health check route
+Route::get('/backend-status', function () {
+    try {
+        ApiConfig::init();
+        $backendUrl = ApiConfig::getApiBaseUrl();
+        
+        $response = Http::timeout(5)->get($backendUrl . 'api/health');
+        
+        if ($response->successful()) {
+            $data = $response->json();
+            return response()->json([
+                'status' => 'success',
+                'backend' => [
+                    'url' => $backendUrl,
+                    'working' => true,
+                    'database' => $data['database'] ?? null
+                ],
+                'timestamp' => now()->toDateTimeString()
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'backend' => [
+                    'url' => $backendUrl,
+                    'working' => false,
+                    'error' => 'Backend returned non-success status'
+                ],
+                'timestamp' => now()->toDateTimeString()
+            ], 503);
+        }
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'backend' => [
+                'url' => ApiConfig::getApiBaseUrl() ?? 'unknown',
+                'working' => false,
+                'error' => $e->getMessage()
+            ],
+            'timestamp' => now()->toDateTimeString()
+        ], 503);
+    }
+});
 
 //````````````````````````````````DATACELL ( SAMEER )```````````````````````````````````//
 Route::prefix('datacell')->group(function () {
