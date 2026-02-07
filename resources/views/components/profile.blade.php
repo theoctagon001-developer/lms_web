@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LMS Dashboard</title>
-    @vite('resources/css/app.css')
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 @php
 $profileImage = session('profileImage', asset('images/male.png'));

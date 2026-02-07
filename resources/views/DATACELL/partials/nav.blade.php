@@ -1,4 +1,4 @@
-@vite('resources/css/app.css')
+<script src="https://cdn.tailwindcss.com"></script>
 <div class="flex items-center print:hidden bg-blue-500 p-2 shadow-md z-50 sticky top-0 w-full">
     <div class="flex items-center space-x-3">
         <button onclick="toggleMenu()" class="text-white text-2xl md:hidden">&#9776;</button>

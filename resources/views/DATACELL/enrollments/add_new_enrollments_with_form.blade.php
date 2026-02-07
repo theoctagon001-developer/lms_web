@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Enrolment</title>
-    @vite('resources/css/app.css')
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .loader {
             border: 4px solid #f3f3f3;

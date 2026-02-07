@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LMS - Excluded Days Management</title>
-    @vite('resources/css/app.css')
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .day-card {
             transition: all 0.3s ease;

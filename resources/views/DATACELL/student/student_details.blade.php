@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LMS Dashboard</title>
-    @vite('resources/css/app.css')
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .session-container {
             transition: all 0.3s ease-in-out;

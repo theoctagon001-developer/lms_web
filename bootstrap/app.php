@@ -11,12 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Force HTTPS in production
-        if (config('app.env') === 'production') {
-            $middleware->web(append: [
-                \Illuminate\Http\Middleware\TrustProxies::class,
-            ]);
-        }
+        // Trust proxies for Render deployment
+        $middleware->web(append: [
+            \Illuminate\Http\Middleware\TrustProxies::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
