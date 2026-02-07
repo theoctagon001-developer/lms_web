@@ -13,7 +13,7 @@ Route::get('/backend-status', function () {
         ApiConfig::init();
         $backendUrl = ApiConfig::getApiBaseUrl();
         
-        $response = Http::timeout(5)->get($backendUrl . 'api/health');
+        $response = Http::timeout(120)->get($backendUrl . 'api/health');
         
         if ($response->successful()) {
             $data = $response->json();

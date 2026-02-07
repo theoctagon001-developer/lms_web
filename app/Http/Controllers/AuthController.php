@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Services\ApiConfig;
+use App\Services\HttpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -20,7 +21,7 @@ class AuthController extends Controller
             'username' => 'required',
             'password' => 'required',
         ]);
-        $response = Http::get($this->baseUrl . 'api/Login', [
+        $response = HttpService::get($this->baseUrl . 'api/Login', [
             'username' => $request->username,
             'password' => $request->password,
         ]);
@@ -129,7 +130,7 @@ class AuthController extends Controller
     public function TranscriptAli(Request $request)
     {
         $studentID = $request->student_id;
-        $response = Http::get($this->baseUrl . 'api/Admin/viewTranscript', [
+        $response = HttpService::get($this->baseUrl . 'api/Admin/viewTranscript', [
             'student_id' => $studentID
         ]);
         if ($response->successful()) {
@@ -149,7 +150,7 @@ class AuthController extends Controller
     }
     public function AllStudent(Request $request)
     {
-        $response = Http::get($this->baseUrl . 'api/Admin/AllStudent');
+        $response = HttpService::get($this->baseUrl . 'api/Admin/AllStudent');
         if ($response->successful()) {
             $data = $response->json(); 
             $students = $data['Student'] ?? [];
@@ -161,7 +162,7 @@ class AuthController extends Controller
     public function Transcript(Request $request)
     {
         $studentID = $request->student_id;
-        $response = Http::get($this->baseUrl . 'api/Admin/viewTranscript', [
+        $response = HttpService::get($this->baseUrl . 'api/Admin/viewTranscript', [
             'student_id' => $studentID
         ]);
         if ($response->successful()) {
@@ -182,7 +183,7 @@ class AuthController extends Controller
 
     public function AllCourse(Request $request)
     {
-        $response = Http::get($this->baseUrl . 'api/Admin/courses');
+        $response = HttpService::get($this->baseUrl . 'api/Admin/courses');
         if ($response->successful()) {
             $data = $response->json();
             $courses = $data['Courses'] ?? [];
@@ -193,7 +194,7 @@ class AuthController extends Controller
     }
     public function FullTimetable(Request $request)
     {
-        $response = Http::post($this->baseUrl . 'api/Uploading/timetable/section');
+        $response = HttpService::post($this->baseUrl . 'api/Uploading/timetable/section');
         if ($response->successful()) {
             $data = $response->json(); 
             $timetable = $data['timetable'] ?? [];
@@ -204,7 +205,7 @@ class AuthController extends Controller
     }
     public function FullTimetable1(Request $request)
     {
-        $response = Http::post($this->baseUrl . 'api/Uploading/timetable/section');
+        $response = HttpService::post($this->baseUrl . 'api/Uploading/timetable/section');
         if ($response->successful()) {
             $data = $response->json(); 
             $timetable = $data['timetable'] ?? [];
@@ -249,7 +250,7 @@ class AuthController extends Controller
             $formData['image'] = fopen($image->path(), 'r');
         }
 
-        $response = Http::attach(
+        $response = Http::timeout(120)->attach(
             'image',
             $request->file('image') ? fopen($request->file('image')->path(), 'r') : null,
             $request->file('image') ? $request->file('image')->getClientOriginalName() : null
@@ -278,7 +279,7 @@ class AuthController extends Controller
         $userType = session('userType');
 
         try {
-            $apiResponse = Http::post($this->baseUrl . 'api/verify/login', [
+            $apiResponse = HttpService::post($this->baseUrl . 'api/verify/login', [
                 'user_id' => $userId,
                 'otp' => $request->otp
             ]);
@@ -321,7 +322,7 @@ class AuthController extends Controller
     }
     public function FullTimetable2(Request $request)
     {
-        $response = Http::post($this->baseUrl . 'api/Uploading/timetable/section');
+        $response = HttpService::post($this->baseUrl . 'api/Uploading/timetable/section');
         if ($response->successful()) {
             $data = $response->json();
             $timetable = $data['timetable'] ?? [];
@@ -335,7 +336,7 @@ class AuthController extends Controller
     public function Transcript2(Request $request)
     {
         $studentID = $request->student_id;
-        $response = Http::get($this->baseUrl . 'api/Admin/viewTranscript', [
+        $response = HttpService::get($this->baseUrl . 'api/Admin/viewTranscript', [
             'student_id' => $studentID
         ]);
         if ($response->successful()) {
@@ -357,7 +358,7 @@ class AuthController extends Controller
       public function TranscriptDatacell(Request $request)
     {
         $studentID = $request->student_id;
-        $response = Http::get($this->baseUrl . 'api/Admin/viewTranscript', [
+        $response = HttpService::get($this->baseUrl . 'api/Admin/viewTranscript', [
             'student_id' => $studentID
         ]);
         if ($response->successful()) {
