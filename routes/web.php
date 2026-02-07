@@ -396,10 +396,14 @@ Route::get('/clear-session', function () {
     Session::flush();
     return response()->json(['status' => 'success', 'message' => 'Session cleared successfully.']);
 })->name('clear.session');
-Route::get('/', function () {
+Route::get('/login', function () {
     //  Session::flush();
     return view('AUTHENTICATION.login');
 })->name('login');
+
+Route::get('/', function () {
+    return view('welcome');
+});
 Route::post('/login', [AuthController::class, 'handleLogin'])->name('handleLogin');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout1');
